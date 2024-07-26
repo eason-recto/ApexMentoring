@@ -2,7 +2,23 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>EmailService</members>
+		<members>ParticipantSelectors</members>
+		<members>ParticipantService</members>
+		<members>ParticipantTriggerHandler</members>
+		<members>RegistrationConfirmationQueueable</members>
+		<members>RegistrationConfirmationQueueableTest</members>
+		<members>RestaurantSelectors</members>
+		<members>TrainingReminderScheduled</members>
+		<members>TrainingReminderScheduledTest</members>
+		<members>TrainingSelectors</members>
+		<members>TrainingService</members>
+		<members>TrainingTriggerHandler</members>
+		<members>TrainingTriggerTest</members>
 		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>ApexTrigger</name>
 	</types>
 	<version>60.0</version>
 </Package>
