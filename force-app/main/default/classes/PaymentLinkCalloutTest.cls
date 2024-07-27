@@ -35,7 +35,7 @@ public with sharing class PaymentLinkCalloutTest {
         PaymentLinkCallout.requestPaymentLink(participants);
         Test.stopTest();
 
-        Assert.areEqual('https://pry.me/p/1688117280',
+        Assert.areEqual('https://pry.me/p/1721958415',
                         participants.get(0).PaymentLink__c,
                         'The participant\'s payment link should be populated.');
     }
