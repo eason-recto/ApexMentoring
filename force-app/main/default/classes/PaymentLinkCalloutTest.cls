@@ -12,7 +12,7 @@ public with sharing class PaymentLinkCalloutTest {
         Restaurant__c restaurant = TestDataFactory.createNewRestaurant('Testaurant');
         insert restaurant;
         
-        Training__c training = TestDataFactory.createNewTraining(contact, restaurant, Date.today().addDays(3));
+        Training__c training = TestDataFactory.createNewTraining(contact1, restaurant, Date.today().addDays(3));
         insert training;
         
         Participant__c participant1 = TestDataFactory.createNewParticipant(contact1, training);
@@ -25,7 +25,7 @@ public with sharing class PaymentLinkCalloutTest {
     @isTest 
     static void testRequestPaymentLink() {
         List<Participant__c> participants = [
-            SELECT Id, PaymentLink, Training__r.Name, Contact_Name__c, Contact_Name__r.Name, Contact_Name__r.Email
+            SELECT Id, PaymentLink__c, Training__r.Name, Contact_Name__c, Contact_Name__r.Name, Contact_Name__r.Email
             FROM Participant__c
         ];
 
@@ -35,13 +35,8 @@ public with sharing class PaymentLinkCalloutTest {
         PaymentLinkCallout.requestPaymentLink(participants);
         Test.stopTest();
 
-        Assert.areEqual(200,result.getStatusCode(), 'The status code is not 200.');
-        Assert.areEqual('application/json;charset=UTF-8',
-                        result.getHeader('Content-Type'),
-                        'The content type value is not expected.');
-        List<Object> animals = (List<Object>) results.get('animals');
         Assert.areEqual('https://pry.me/p/1688117280',
-                        participants.get(0).PaymentLink,
+                        participants.get(0).PaymentLink__c,
                         'The participant\'s payment link should be populated.');
     }
 }

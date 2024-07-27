@@ -1,4 +1,4 @@
-public with sharing class RegistrationConfirmationQueueable implements Queueable, Database.AllowsCallouts {
+public with sharing class RegistrationConfirmationQueueable implements Queueable {
     
     private Set<Id> participantIds;
     
@@ -12,8 +12,6 @@ public with sharing class RegistrationConfirmationQueueable implements Queueable
      */
     public void execute(QueueableContext context) {
         List<Participant__c> participants = ParticipantSelectors.queryParticipantsByIds(participantIds);
-        
-        PaymentLinkCallout.requestPaymentLink(participants);
         
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
         for (Participant__c participant : participants) {

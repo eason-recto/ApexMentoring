@@ -15,7 +15,7 @@ public with sharing class PaymentLinkCallout {
             Map<String, Object> payer = (Map<String, Object>) payload.get('payer');
             String link = (String) payer.get('link');
 
-            participant.PaymentLink = link;
+            participant.PaymentLink__c = link;
         }
         
         update participants;
@@ -30,13 +30,13 @@ public with sharing class PaymentLinkCallout {
         Messaging.sendEmail(emails);
     }
 
-    private Messaging.SingleEmailMessage createEmailToSendPaymentLink(Participant__c participant) {
+    private static Messaging.SingleEmailMessage createEmailToSendPaymentLink(Participant__c participant) {
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         mail.setTargetObjectId(participant.Contact_Name__c);
         mail.setWhatId(participant.Id);
         mail.setHTMLBody('Dear ' + participant.Contact_Name__r.Name + ',\n\n' +
                          'To complete your registration, please make a payment by clicking on the link below:\n\n' + 
-                         participant.PaymentLink + '\n\n' +
+                         participant.PaymentLink__c + '\n\n' +
                          'We are lookingforward to seeing you!\n\n' +
                          'Best regards,\n' + 
                          'Training Management System'
