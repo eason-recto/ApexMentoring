@@ -21,12 +21,10 @@ public with sharing class PaymentLinkCallout {
         update participants;
     }
 
-    public static void sendPaymentEmail(List<Participant__c> participants) {
+    public static void sendPaymentEmail(Participant__c participant) {
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
-        for (Participant__c participant : participants) {
-            Messaging.SingleEmailMessage mail = createEmailToSendPaymentLink(participant);
-            emails.add(mail);
-        }
+        Messaging.SingleEmailMessage mail = createEmailToSendPaymentLink(participant);
+        emails.add(mail);
         Messaging.sendEmail(emails);
     }
 
