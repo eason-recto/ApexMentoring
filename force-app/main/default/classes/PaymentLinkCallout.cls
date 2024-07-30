@@ -1,7 +1,10 @@
 public with sharing class PaymentLinkCallout {
+
+    private static final String PAYMENT_LINK_ENDPOINT = 'https://735ef563-176d-431c-85ce-2cc07056ef03.mock.pstmn.io/payments/link';
+
     public static void requestPaymentLink(List<Participant__c> participants) {
-        String endpoint = 'https://735ef563-176d-431c-85ce-2cc07056ef03.mock.pstmn.io/payments/link';
-        
+        String endpoint = PAYMENT_LINK_ENDPOINT;
+        System.debug(endpoint);
         for (Participant__c participant : participants) {
             HttpRequest request = new HttpRequest();
             request.setEndpoint(endpoint);
@@ -11,9 +14,8 @@ public with sharing class PaymentLinkCallout {
             Http http = new Http();
 
             HttpResponse response = http.send(request);
-            Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-            Map<String, Object> payer = (Map<String, Object>) payload.get('payer');
-            String link = (String) payer.get('link');
+            PaymentPayload payload = PaymentPayload.parse(response.getBody());
+            String link = payload.Payer.link;
 
             participant.PaymentLink__c = link;
         }
