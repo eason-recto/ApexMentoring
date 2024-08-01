@@ -14,7 +14,7 @@ public with sharing class PaymentLinkCallout {
             Http http = new Http();
 
             HttpResponse response = http.send(request);
-            PaymentPayload payload = PaymentPayload.parse(response.getBody());
+            PaymentPayload payload = JSON.deserialize(response.getBody(), PaymentPayload.class);
             String link = payload.Payer.link;
 
             participant.PaymentLink__c = link;
@@ -42,5 +42,13 @@ public with sharing class PaymentLinkCallout {
                          'Training Management System'
                         );
         return mail;
+    }
+
+    public class PaymentPayload {
+        public Payer Payer;
+    }
+
+    public class Payer {
+        public String link;
     }
 }

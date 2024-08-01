@@ -16,10 +16,9 @@ public with sharing class PaymentLinkCalloutTest {
         insert training;
         
         Participant__c participant1 = TestDataFactory.createNewParticipant(contact1, training);
-        insert participant1;
-
         Participant__c participant2 = TestDataFactory.createNewParticipant(contact2, training);
-        insert participant2;
+        
+        insert new List<Participant__c>{participant1, participant2};
     }
 
     @isTest 
@@ -35,8 +34,10 @@ public with sharing class PaymentLinkCalloutTest {
         PaymentLinkCallout.requestPaymentLink(participants);
         Test.stopTest();
 
-        Assert.areEqual('https://pry.me/p/1721958415',
-                        participants.get(0).PaymentLink__c,
-                        'The participant\'s payment link should be populated.');
+        Assert.areEqual(
+            PaymentLinkCalloutMock.PAYMENT_LINK,
+            participants.get(0).PaymentLink__c,
+            'The participant\'s payment link should be populated.'
+        );
     }
 }
