@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="University Domain Checker" icon-name="standard:education">
+        <template lwc:if={message}>
+            <div class="slds-box slds-m-bottom_small">
+                <p><lightning-formatted-text value={message} class={messageClass}></lightning-formatted-text></p>
+            </div>
+        </template>
+        
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_3-of-4">
+                <lightning-input 
+                    type="text" 
+                    label="Input University Domain..." 
+                    placeholder="For example... harvard.edu"
+                    onchange={handleChange}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-4 slds-m-top_large">
+                <lightning-button 
+                    variant="brand" 
+                    label="Check Domain" 
+                    onclick={handleCheck}
+                    class="slds-button_stretch">
+                </lightning-button>
+            </div>
+        </div>
+        <div if:true={isLoaded} class="slds-is-relative">
+            <lightning-spinner alternative-text="Loading..." variant="brand" size="large">
+            </lightning-spinner>
+        </div>
+    </lightning-card>
+</template>

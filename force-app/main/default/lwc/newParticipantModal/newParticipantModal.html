@@ -1,0 +1,16 @@
+<template>
+    <lightning-modal-header label="New Participant">New Participant</lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-record-edit-form object-api-name={participantApiName} onsubmit={handleSave}>
+            <lightning-input-field field-name={status}></lightning-input-field>
+            <lightning-input-field field-name={gpa}></lightning-input-field>
+            <lightning-input-field field-name={contactName}></lightning-input-field>
+            <lightning-input-field field-name={training} value={recordId}></lightning-input-field>
+            <lightning-input-field field-name={passed}></lightning-input-field>
+
+            <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={closeModal}></lightning-button>
+            <lightning-button variant="brand" type="submit" label="Save" title="Save"></lightning-button>
+        </lightning-record-edit-form>
+        
+    </lightning-modal-body>
+</template>

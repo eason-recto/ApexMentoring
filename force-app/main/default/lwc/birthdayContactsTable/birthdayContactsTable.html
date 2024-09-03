@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Today's Birthdays!" icon-name="standard:key_dates">
+
+        <lightning-datatable
+            key-field="Id"
+            data={contacts}
+            columns={columns}
+            errors={errors}
+            show-row-number-column
+            hide-checkbox-column
+            onrowaction={handleRowAction}
+        >
+        </lightning-datatable>
+    </lightning-card>
+</template>

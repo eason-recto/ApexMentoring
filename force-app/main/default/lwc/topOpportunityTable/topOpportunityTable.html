@@ -1,0 +1,17 @@
+<template>
+    <template lwc:if={opportunities}>
+        <lightning-card title="Top Opportunity Table" icon-name="standard:opportunity">
+
+            <lightning-datatable
+                key-field="opportunityId"
+                data={opportunities}
+                columns={columns}
+                errors={errors}
+                show-row-number-column
+                hide-checkbox-column
+            >
+            </lightning-datatable>
+
+        </lightning-card>
+    </template>
+</template>

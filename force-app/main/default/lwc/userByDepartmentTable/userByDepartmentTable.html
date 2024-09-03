@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Users by Department" icon-name="standard:user">
+        <div class="slds-m-bottom_medium">
+            <lightning-combobox
+            name="department"
+            label="Department"
+            value={inputChoice}
+            options={options}
+            onchange={handleChange} 
+            >
+            </lightning-combobox>
+        </div>
+
+        <lightning-datatable
+            key-field="Id"
+            data={users}
+            columns={columns}
+            errors={errors}
+            show-row-number-column
+            hide-checkbox-column
+        >
+        </lightning-datatable>
+    </lightning-card>
+</template>

@@ -1,0 +1,22 @@
+<template>
+    <template lwc:if={participants}>
+        <lightning-card title="Student Grading Table" icon-name="standard:education">
+            <template lwc:if={showSearch}>
+                <c-search-component-child record-id={recordId} onaddrow={handleAddRow}></c-search-component-child>
+            </template>
+
+            <lightning-datatable
+                key-field="participantId"
+                data={participants}
+                columns={columns}
+                errors={errors}
+                draft-values={draftValues}
+                show-row-number-column
+                hide-checkbox-column
+                onsave={handleSave}
+            >
+            </lightning-datatable>
+
+        </lightning-card>
+    </template>
+</template>

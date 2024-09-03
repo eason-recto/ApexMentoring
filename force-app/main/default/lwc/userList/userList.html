@@ -1,0 +1,57 @@
+<template>
+    <lightning-card>
+        <lightning-card title="Salesforce User Directory">
+            <lightning-datatable
+            key-field="id"
+            data={userData}
+            columns={columns}>
+            </lightning-datatable>
+        </lightning-card>
+        <lightning-card title="Unique Departments in the Company">
+            <lightning-datatable
+            key-field="id"
+            data={departmentData}
+            columns={columns}>
+            </lightning-datatable>
+        </lightning-card>
+    </lightning-card>
+    
+</template>
+    <!--lightning-card title="Salesforce User Directory">
+        <div>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-label="Example default base table of Opportunities">
+                <thead id="header-el">
+                </thead>
+                <tbody id="body-el">
+                    <tr class="slds-hint-parent">
+                        <td>Alfreds Futterkiste</td>
+                        <td>CEO</td>
+                        <td><lightning-formatted-email value="a.futterkiste@training.edu"></lightning-formatted-email></td>
+                        <td>123456789</td>
+                        <td>Sales</td>
+                    </tr>
+                    <tr>
+                        <td>Maria Anders</td>
+                        <td>Director</td>
+                        <td><lightning-formatted-email value="m.anders@training.edu"></lightning-formatted-email></td>
+                        <td>987654321</td>
+                        <td>Marketing</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total Users: 2</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div>
+            <lightning-card title="Unique Departments in the Company">
+                <ul>
+                    <li>- Marketing</li>
+                    <li>- Sales</li>
+                </ul>
+            </lightning-card>
+        </div>
+    </!lightning-card>
+</template-->

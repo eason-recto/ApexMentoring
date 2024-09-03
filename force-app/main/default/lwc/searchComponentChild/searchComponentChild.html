@@ -1,0 +1,48 @@
+<template>
+    <template lwc:if={errorMessage}>
+        <div class="slds-box slds-m-bottom_small" style="border: 2px solid red">
+            <p><lightning-formatted-text value={errorMessage} ></lightning-formatted-text></p>
+        </div>
+    </template>
+    
+    <div>
+        <div class="slds-grid slds-gutters slds-m-bottom_small">
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-input 
+                    type="text" 
+                    label="Input ERP Id..." 
+                    variant="label-hidden"
+                    onchange={handleChange}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning-button 
+                    variant="brand" 
+                    label="Add Participant" 
+                    onclick={handleInputClickAddParticipant}
+                    class="slds-button_stretch">
+                </lightning-button>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning-button 
+                    variant="destructive-text" 
+                    label="New Student" 
+                    onclick={handleInputClickNewStudent}
+                    class="slds-button_stretch">
+                </lightning-button>
+            </div>
+            <div class="slds-col slds-size_2-of-12">
+                <lightning-button 
+                    variant="brand-outline" 
+                    label="New" 
+                    onclick={handleNew}
+                    class="slds-button_stretch">
+                </lightning-button>
+            </div>
+        </div>
+    </div>
+    <div if:true={isLoaded} class="slds-is-relative">
+        <lightning-spinner alternative-text="Loading..." variant="brand" size="large">
+        </lightning-spinner>
+    </div>
+</template>

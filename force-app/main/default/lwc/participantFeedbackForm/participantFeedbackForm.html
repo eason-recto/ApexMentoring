@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Student Feedback Form" icon-name="standard:loop">
+        <lightning-record-edit-form object-api-name={trainingFeedbackApiName} onsuccess={handleSuccess} onerror={handleError}>
+
+            <lightning-messages></lightning-messages>
+
+            <label class="slds-form-element__label" for="training">Training</label>
+            <lightning-input-field field-name={training} value={recordId} id="training" variant="label-hidden">
+            </lightning-input-field>
+
+            <label class="slds-form-element__label" for="participant">Participant</label>
+            <lightning-input-field class="needs-input" field-name={participant} id="participant" variant="label-hidden">
+            </lightning-input-field>
+
+            <label class="slds-form-element__label" for="rating">On a scale of (1-10) how much would you recommend the course?</label>
+            <lightning-input-field class="needs-input" field-name={rating} id="rating" variant="label-hidden">
+            </lightning-input-field>
+
+            <label class="slds-form-element__label" for="mostHelpfulPart">What was the most helpful part of the course?</label>
+            <lightning-input-field class="needs-input" field-name={mostHelpfulPart} id="mostHelpfulPart" variant="label-hidden">
+            </lightning-input-field>
+
+            <label class="slds-form-element__label" for="suggestionsForImprovement">What could be improved about the course?</label>
+            <lightning-input-field class="needs-input" field-name={suggestionsForImprovement} id="suggestionsForImprovement" variant="label-hidden">
+            </lightning-input-field>
+
+            <label class="slds-form-element__label" for="learnedFromTraining">Do you know more than when you started?</label>
+            <lightning-input-field class="needs-input" field-name={learnedFromTraining} id="learnedFromTraining" variant="label-hidden">
+            </lightning-input-field>
+
+            <label class="slds-form-element__label" for="additionalThoughts">Please provide any additional feedback if you have any!</label>
+            <lightning-input-field class="needs-input" field-name={additionalThoughts} id="additionalThoughts" variant="label-hidden">
+            </lightning-input-field>
+
+            <div class="slds-m-top_x-small">
+                <lightning-button variant="brand" type="submit" label="Save" title="Save">
+                </lightning-button>
+            </div>
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>

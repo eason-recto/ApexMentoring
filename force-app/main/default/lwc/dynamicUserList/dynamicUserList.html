@@ -1,0 +1,23 @@
+<template>
+    <template if:true={users}>
+        <lightning-card title="Salesforce Active User Directory">
+
+            <lightning-record-form
+            object-api-name={objectApiName}
+            fields={fields}
+            onsuccess={handleSuccess}
+            >
+            </lightning-record-form>
+
+            <lightning-datatable
+            key-field="Email"
+            data={users}
+            columns={columns}
+            show-row-number-column
+            hide-checkbox-column
+            >
+            </lightning-datatable>
+
+        </lightning-card>
+    </template>
+</template>
