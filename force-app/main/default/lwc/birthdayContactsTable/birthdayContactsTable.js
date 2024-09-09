@@ -60,6 +60,14 @@ export default class BirthdayContactsTable extends LightningElement {
         })
         .catch(error => {
             this.errors = error;
+            console.log('error', error);
+            if(error.body.message.includes('System.BirthdayContactsEmailMissingException')){
+                this.showToast("Warning", "Email is missing for this Contact.", "warning");
+
+            } else if(error.body.message.includes('System.BirthdayContactsEmailSendException')){
+                this.showToast("Error", "Email sending failed.", "error");
+               
+            }
             this.showToast("Warning", "You already sent an email to this Contact.", "warning");
         })
     }

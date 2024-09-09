@@ -61,9 +61,10 @@ export default class SearchComponentChild extends LightningElement {
         })
         .catch(error => {
             this.error = error;
-            this.isLoaded = !this.isLoaded;
-            this.errorMessage = "No student found with this ERP ID";
+            console.log(JSON.stringify(error));
+            this.errorMessage = "No student found with this ERP ID: " + this.inputText;
             this.showErrorMessage();
+            this.isLoaded = !this.isLoaded;
         })
     }
 
@@ -74,7 +75,7 @@ export default class SearchComponentChild extends LightningElement {
 
     handleNew(event) {
         this.errorMessage = "";
-
+        this.inputText = "";
         newParticipantModal.open({
             size: "small", 
             recordId: this.recordId, 

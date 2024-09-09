@@ -1,5 +1,16 @@
 public with sharing class StudentGradingTableController {
 
+    @AuraEnabled (cacheable=true)
+    public static List<ParticipantWrapper> fetchParticipants(Id trainingId){
+        List<Participant__c> participants = queryParticipants(trainingId);
+
+        if (participants.isEmpty()) {
+            return null;
+        }
+        
+        return convertParticipantsToWrappers(participants);
+    }
+
     @AuraEnabled
     public static List<ParticipantWrapper> getParticipants(Id trainingId){
         List<Participant__c> participants = queryParticipants(trainingId);
@@ -77,6 +88,12 @@ public with sharing class StudentGradingTableController {
         return convertParticipantsToWrappers(participants).get(0);*/
     }
 
+    @AuraEnabled
+    public static void deleteParticipant(ParticipantWrapper participant){
+        Participant__c participantToDelete = queryParticipantById(participant.participantId);
+        delete participantToDelete;
+    }
+
     private static List<ParticipantWrapper> convertParticipantsToWrappers(List<Participant__c> participants) {
         List<ParticipantWrapper> participantWrappers = new List<ParticipantWrapper>();
 
@@ -110,6 +127,15 @@ public with sharing class StudentGradingTableController {
             SELECT Id, Name, Status__c, GPA__c, Passed__c, Student_Name__c, Contact_Email__c, Contact_Name__c, ERP_Id__c, Training__c
             FROM Participant__c
             WHERE ERP_Id__c = :erpId
+        ];
+    }
+
+    public static Participant__c queryParticipantById(Id participantId) {
+        return [
+            SELECT Id
+            FROM Participant__c
+            WHERE Id = :participantId
+            LIMIT 1
         ];
     }
 

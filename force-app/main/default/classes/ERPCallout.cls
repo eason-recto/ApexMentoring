@@ -80,10 +80,9 @@ public with sharing class ERPCallout {
         List<Participant__c> participants = new List<Participant__c>();
 
         ParticipantData participantData = calloutGivenErpId(erpId);
-
         Participant__c queriedParticipant = queryParticipantById(participantData.Id);
         if (queriedParticipant == null) {
-            throw new QueryException();
+            throw new EmptyParticipantException('Participant with this ERP ID does not exist.');
         }
 
         Participant__c participant = new Participant__c();
@@ -101,14 +100,15 @@ public with sharing class ERPCallout {
     private static ParticipantData calloutGivenErpId(String erpId) {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        request.setEndpoint('callout:EsMockApiParticipants/' + erpId);
+        request.setEndpoint('callout:EsMockApiParticipants' + '/' + erpId);
         // request.setHeader(REQUEST_CONTENT_TYPE, REQUEST_CONTENT_TYPE_JSON);
         request.setMethod(REQUEST_METHOD_GET);
 
         try {
             HttpResponse response = http.send(request);
+            System.debug('response.getBody: ' + response.getBody());
             ParticipantData payload = (ParticipantData) JSON.deserialize(response.getBody(), ParticipantData.class);
-
+            System.debug('payload: ' + payload);
             return payload;
 
         } catch(CalloutException e) {

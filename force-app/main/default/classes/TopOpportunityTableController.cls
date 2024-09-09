@@ -2,7 +2,7 @@ public with sharing class TopOpportunityTableController {
     @AuraEnabled
     public static List<OpportunityWrapper> getOpportunities(Integer opportunityLimit){
 
-        if (opportunityLimit <=0) {
+        if (opportunityLimit <= 0) {
             throw new IllegalArgumentException('You must choose to display 1 or more Opportunities.');
         }
 

@@ -11,10 +11,10 @@ public with sharing class UniversityDomainCheckerController {
         return calloutBody.contains('\"' + domain + '\"');
     }
 
-    private static String universityDomainCallout() {
+    private static String universityDomainCallout(String domain) {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        request.setEndpoint('callout:UniversityDomainAPI');
+        request.setEndpoint('callout:UniversityDomainAPI' + '/search?domain=' + domain);
         request.setMethod('GET');
 
         try {

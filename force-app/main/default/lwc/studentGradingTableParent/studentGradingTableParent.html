@@ -5,18 +5,39 @@
                 <c-search-component-child record-id={recordId} onaddrow={handleAddRow}></c-search-component-child>
             </template>
 
-            <lightning-datatable
+            <!--lightning-datatable
                 key-field="participantId"
                 data={participants}
                 columns={columns}
-                errors={errors}
+                errors={error}
                 draft-values={draftValues}
                 show-row-number-column
                 hide-checkbox-column
                 onsave={handleSave}
+                onrowaction={handleRowAction}
             >
-            </lightning-datatable>
+            </lightning-datatable-->
 
+            <c-custom-types-global
+                key-field="participantId"
+                data={participants}
+                columns={columns}
+                errors={error}
+                draft-values={draftValues}
+                show-row-number-column
+                hide-checkbox-column
+                onsave={handleSave}
+                onrowaction={handleRowAction}
+                oncancel={handleCancel}
+                oncellchange={handleCellChange}
+                onaddrow={handleAddRow}
+            >
+            </c-custom-types-global>
+            
+            <div if:true={isLoaded} class="slds-is-relative">
+                <lightning-spinner alternative-text="Loading..." variant="brand" size="large">
+                </lightning-spinner>
+            </div>
         </lightning-card>
     </template>
 </template>

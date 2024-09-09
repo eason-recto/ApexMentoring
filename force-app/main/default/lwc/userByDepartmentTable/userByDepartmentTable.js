@@ -18,13 +18,13 @@ export default class UserByDepartmentTable extends LightningElement {
 
     get options() {
         var returnOptions = [{label: 'All Departments' , value: 'All Departments'}];
-        console.log('OPTIONS ONE');
+        //console.log('OPTIONS ONE');
         if(this.departments) {
             this.departments.forEach(department => {
                 returnOptions = [...returnOptions, {label: department.Department , value: department.Department}];
             }); 
         }
-        console.log('OPTIONS TWO');
+        //console.log('OPTIONS TWO');
         return returnOptions;
     }
 
