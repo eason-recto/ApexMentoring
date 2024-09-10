@@ -265,7 +265,6 @@ export default class StudentGradingTableParent extends LightningElement {
         })
         .catch(error => {
             this.error = error;
-            console.log('handleRowAction error: ' + JSON.stringify(error));
             this.isLoaded = !this.isLoaded;
         })
     }

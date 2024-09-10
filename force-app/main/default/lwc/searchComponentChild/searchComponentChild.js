@@ -75,7 +75,6 @@ export default class SearchComponentChild extends LightningElement {
 
     handleNew(event) {
         this.errorMessage = "";
-        this.inputText = "";
         newParticipantModal.open({
             size: "small", 
             recordId: this.recordId, 
